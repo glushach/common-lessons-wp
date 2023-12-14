@@ -46,3 +46,13 @@
 .minus {
   display: none;
 }
+
+/* Category style */
+.cat-desc {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background: #E2E0E1;
+  overflow: hidden;
+}

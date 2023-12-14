@@ -747,3 +747,15 @@ function spoller_function($atts, $content=null)
 }
 
 add_shortcode('spoller', 'spoller_function');
+
+
+function cat_desc($attr, $text='')
+{
+	echo '<div class="cat-desc">';
+	echo "<img class='wp-post-image' src='{$attr['src']}' alt=''/>";
+	echo $text;
+	echo '</div>';
+}
+
+add_shortcode('cat_desc', 'cat_desc');
+add_filter('term_description', 'do_shortcode');
