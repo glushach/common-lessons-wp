@@ -763,3 +763,21 @@ function remove_title($str) {
 	return $str;
 }
 add_filter('wp_list_categories', 'remove_title');
+
+// Login Errors
+/* add_filter('login_errors', 'my_login_errors');
+
+function my_login_errors()
+{
+	return 'Ошибка';
+} */
+
+add_filter('authenticate', 'my_auth', 20, 3);
+
+function my_auth($user, $username, $password)
+{
+	if (isset($user->errors['invalid_username']) || isset($user->errors['incorrect_password'])) {
+		return new WP_Error('broke', '<b>Ошибка</b>: неверный логин или пароль');
+	}
+	return $user;
+}
