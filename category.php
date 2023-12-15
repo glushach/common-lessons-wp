@@ -21,10 +21,12 @@ get_header(); ?>
 			$category_id = get_query_var('cat');
 			// данные о текущей категории
 			$category = get_category($category_id);
+			// номер текущей страницы
+			$page = get_query_var('paged');
 			// данные о дочерних рубриках
 			$children_categories = get_categories("parent={$category_id}");
 			
-			if ($category->description) :
+			if ($category->description  && !$page) :
 				?>
 					<div class="post-main">
 						<h1><?php echo $category->name; ?></h1>
@@ -35,6 +37,26 @@ get_header(); ?>
 					<hr/><br/>
 				<?php
 			endif;
+
+			if($children_categories) :
+				foreach($children_categories as $children_category) :
+					$link = get_category_link($children_category->cat_ID);
+					?>
+					<div class="post-main">
+						<h1><a href="<?php echo $link; ?>"><?php echo $children_category->name; ?></a></h1>
+						<div class="post">
+							<?php 
+							if ($children_category->description) :
+								do_shortcode($children_category->description);
+							else:
+								echo '<p>Описание по умолчанию</p>';
+							endif;
+							?>
+						</div>
+					</div>
+					<?php
+				endforeach;
+			else: //иначе выводим записи;
 		?>
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
@@ -65,7 +87,9 @@ get_header(); ?>
 
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
+		<?php endif; 
+		endif // конец условия $children_categories;
+		?>
 
 		</div><!-- #content -->
 	</section><!-- #primary -->

@@ -55,4 +55,10 @@
   padding: 5px 15px;
   background: #E2E0E1;
   overflow: hidden;
+  display: flex;
+  gap: 10px;
+}
+
+.cat-desc img.wp-post-image {
+  max-width: 275px;
 }

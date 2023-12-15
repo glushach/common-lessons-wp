@@ -756,6 +756,10 @@ function cat_desc($attr, $text='')
 	echo $text;
 	echo '</div>';
 }
-
 add_shortcode('cat_desc', 'cat_desc');
-add_filter('term_description', 'do_shortcode');
+
+function remove_title($str) {
+	$str = preg_replace('#title="[^"]+"#', 'title=""', $str);
+	return $str;
+}
+add_filter('wp_list_categories', 'remove_title');
