@@ -15,7 +15,27 @@ get_header(); ?>
 
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
-		<?php echo category_description() ;?>
+		
+		<?php 
+			// номер рубрики
+			$category_id = get_query_var('cat');
+			// данные о текущей категории
+			$category = get_category($category_id);
+			// данные о дочерних рубриках
+			$children_categories = get_categories("parent={$category_id}");
+			
+			if ($category->description) :
+				?>
+					<div class="post-main">
+						<h1><?php echo $category->name; ?></h1>
+						<div class="post">
+							<?php do_shortcode($category->description) ;?>
+						</div>
+					</div>
+					<hr/><br/>
+				<?php
+			endif;
+		?>
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
 				<h1 class="archive-title">
