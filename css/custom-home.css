@@ -1,0 +1,9 @@
+ul.nav-menu {
+  background: #ccc;
+  list-style: none;
+  padding: 20px;
+}
+
+ul.nav-menu li {
+  display: inline-block;
+}

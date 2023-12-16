@@ -188,6 +188,13 @@ function twentytwelve_get_font_url() {
  * @since Twenty Twelve 1.0
  */
 function twentytwelve_scripts_styles() {
+	if (is_front_page()) {
+		wp_enqueue_script( 'twentytwelve-backstretch', get_template_directory_uri() . '/js/jquery.backstretch.min.js', array( 'jquery' ), '1.0');
+		wp_enqueue_style( 'twentytwelve-home-style', get_template_directory_uri() . '/css/custom-home.css');
+		return;
+	}
+
+
 	global $wp_styles;
 
 	/*
