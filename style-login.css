@@ -1,0 +1,23 @@
+body.login {
+  background-color: #2b394a;
+}
+
+.login h1 a {
+  background: url('http://wordpress/wp-content/uploads/2023/12/logo.jpg') no-repeat center center; width: auto;
+}
+
+
+.login #backtoblog a, 
+.login #nav a,
+.dashicons {
+  color: #fff;
+}
+
+.login #backtoblog a:hover, 
+.login #nav a:hover {
+  color:azure;
+}
+
+#loginform {
+  border-radius: 5px;
+}

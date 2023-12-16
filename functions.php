@@ -833,3 +833,22 @@ function wfm_add_category_posts($atts)
 }
 
 add_shortcode('wfm-cats', 'wfm_add_category_posts');
+
+
+// Change style admin login page
+function custom_login_css() {
+	echo '<link rel="stylesheet" type="text/css" href="'.get_stylesheet_directory_uri('template_directory').'/style-login.css" />';
+	}
+add_action('login_head', 'custom_login_css');
+
+add_filter('login_headerurl',  'function_login_headerurl');
+add_filter('login_headertitle', 'function_login_headertitle');
+
+function function_login_headerurl()
+{
+	return get_home_url();
+}
+function function_login_headertitle()
+{
+	return false;
+}
