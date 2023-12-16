@@ -65,6 +65,10 @@
 
 
 /* Block of post in single post page */
+a:focus, a:active {
+  outline: none;
+}
+
 .insert-posts {
   border: 10px solid #ccc;
   padding: 20px;
