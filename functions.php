@@ -852,3 +852,32 @@ function function_login_headertitle()
 {
 	return false;
 }
+
+// Change url redirect after login. For old versions. New versions don't need for redirect administrator
+function admin_login_redirect($redirect_to, $request, $user) 
+{
+	global $user;
+	if (isset($user->roles) && is_array($user->roles)) {
+		if (in_array('administrator', $user->roles)) {
+			return $redirect_to;
+		} else {
+			return home_url('/privet-mir');
+		}
+	} else {
+		return $redirect_to;
+	}
+}
+
+add_filter("login_redirect", "admin_login_redirect", 10, 3);
+
+// Checked remember me login page
+function login_checked_remember_me()
+{
+	add_filter('login_footer', 'rememberme_checked');
+}
+add_action('init', 'login_checked_remember_me');
+
+function rememberme_checked()
+{
+	echo "<script>document.getElementById('rememberme').checked=true;</script>";
+}
