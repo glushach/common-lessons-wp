@@ -226,8 +226,13 @@ function twentytwelve_scripts_styles() {
 	// Loads the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20150214' );
 	$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
+
+
+	// Fancybox
+	wp_enqueue_script('my-fancybox', get_template_directory_uri() . '/fancybox/jquery.fancybox.min.js', array( 'jquery' ));
+	wp_enqueue_style('my-fancybox', get_template_directory_uri() . '/fancybox/jquery.fancybox.min.css');
 }
-add_action( 'wp_enqueue_scripts', 'twentytwelve_scripts_styles' );
+add_action( 'wp_enqueue_scripts', 'twentytwelve_scripts_styles');
 
 /**
  * Enqueue styles for the block-based editor.

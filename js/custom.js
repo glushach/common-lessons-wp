@@ -6,4 +6,7 @@ jQuery(document).ready(function($) {
     const par = $(this).parent('.spoller');
     par.children('.sp_content').stop().toggle(100);
   });
+
+  // Fancybox
+  $('.wp-block-gallery a').attr('data-fancybox', 'gallery').fancybox();
 });
