@@ -804,9 +804,17 @@ function wfm_add_category_posts($atts)
 		$content .= '<div class="insert-posts">';
 		while ($get_posts->have_posts()) {
 			$get_posts->the_post();
-			$content .= '<p>' . get_the_title() . '</p>';
+
+			if (has_post_thumbnail()) {
+				$img = get_the_post_thumbnail(get_the_ID(), 'full',  array('title' => get_the_title()));
+			} else {
+				$img = '<img src="http://wordpress/wp-content/uploads/2023/12/no_thumb.jpg" alt="' . get_the_title() . '" title="' . get_the_title() . '" />';
+			}
+
+			$content .= '<a href="' . get_the_permalink() . '">' . $img . '</a>';
 		}
 		$content .= '</div>';
+		wp_reset_query();
 	}
 
 	return $content;
